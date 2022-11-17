@@ -38,7 +38,7 @@ public class Player
 
 
   public void setName(String inputName){
-
+    name = inputName;
   }
 
   public void addToPoints(int value){

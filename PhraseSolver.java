@@ -52,12 +52,14 @@ public class PhraseSolver
       String guess = input.nextLine();
       if(currentPlayer == 1){
         if(guess.length() == 1){
-          board.guessLetter(guess);
+          
           if(board.guessLetter(guess)== true){
           player1.addToPoints(currentpoints);
+          board.guessLetter(guess);
           }
         } else{
             if(board.isSolved(guess)){
+              player2.addToPoints(currentpoints);
               solved = true;
               System.out.println("You got the whole phrase");
             }
@@ -65,12 +67,14 @@ public class PhraseSolver
         System.out.println("You have "+player1.getPoints()+" points");
       } else{
         if(guess.length() == 1){
-          board.guessLetter(guess);
+          
           if(board.guessLetter(guess)== true){
             player2.addToPoints(currentpoints);
+            board.guessLetter(guess);
             }
         } else{
             if(board.isSolved(guess)){
+              player2.addToPoints(currentpoints);
               solved = true;
               System.out.println("You got the whole phrase");
             }
@@ -89,9 +93,16 @@ public class PhraseSolver
       }else {
         currentPlayer = 1;
       }
-
+      System.out.println("");
     } 
-   
+   System.out.println("The Final Phrase was: \n" + board.getPhrase());
+    if(player1.getPoints()>player2.getPoints()){
+      System.out.println(player1.getName() + " you have won!\nYou scored: " + player1.getPoints()+ "\n" + player2.getName()+" you scored: " + player2.getPoints());
+    }else if(player1.getPoints()<player2.getPoints()){
+      System.out.println(player2.getName() + " you have won!\nYou scored: " + player2.getPoints()+ "\n" + player1.getName()+" you scored: " + player1.getPoints());
+    }else{
+      System.out.println("You have both won and lost! (lol imagine)");
+    }
   }
   
 }
